@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghofrane Ben Moussa – Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #FFFBF8;
+      --surface:   #FFF4F2;
+      --surface2:  #FFFFFF;
+      --border:    #F1DCD9;
+      --accent:    #E8849A;
+      --accent2:   #C9A0DC;
+      --aglow:     rgba(232,132,154,.10);
+      --text:      #3A2E33;
+      --subtle:    #8B7680;
+      --muted:     #B9A6AD;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ──────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background .3s, border-color .3s;
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled {
+      background: rgba(255,251,248,.92);
+      backdrop-filter: blur(14px);
+      border-color: var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700; font-size: 1.4rem;
+      color: var(--accent); text-decoration: none;
+      letter-spacing: .01em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--subtle); text-decoration: none;
+      font-size: .76rem; font-weight: 500;
+      letter-spacing: .06em; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .nav-burger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--subtle); transition: background .2s;
+    }
+    .nav-burger:hover span { background: var(--accent); }
+
+    /* ── HERO ─────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      max-width: 1200px; margin: 0 auto;
+      padding: 8rem 3rem 5rem;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; top: 6rem; right: -4rem;
+      width: 420px; height: 420px; border-radius: 50%;
+      background: radial-gradient(circle, var(--aglow), transparent 70%);
+      z-index: -1;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: .6rem;
+      font-size: .72rem; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.75rem;
+    }
+    .hero-eyebrow::before {
+      content: '✿'; display: block; font-size: .85rem;
+    }
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(3.2rem, 10vw, 8.5rem);
+      line-height: .98; letter-spacing: -.01em;
+      color: var(--text); margin-bottom: 1.5rem;
+    }
+    .hero-name .outline {
+      color: transparent;
+      -webkit-text-stroke: 1.4px var(--accent2);
+      font-style: italic;
+    }
+    .hero-sub {
+      font-size: clamp(.9rem, 1.5vw, 1.05rem);
+      color: var(--subtle); margin-bottom: 2.75rem;
+      display: flex; flex-wrap: wrap; align-items: center; gap: .75rem;
+    }
+    .hero-sub .sep { color: var(--accent2); }
+    .hero-actions { display: flex; gap: .875rem; flex-wrap: wrap; }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; right: 3rem;
+      writing-mode: vertical-rl;
+      display: flex; align-items: center; gap: .65rem;
+      font-size: .65rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero-scroll::after {
+      content: ''; display: block;
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+    }
+
+    /* ── BUTTONS ──────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: .45rem;
+      padding: .7rem 1.7rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500; font-size: .85rem;
+      border-radius: 30px; text-decoration: none;
+      border: 1px solid transparent; cursor: pointer;
+      transition: all .25s;
+    }
+    .btn-fill  { background: var(--accent); color: #FFFBF8; border-color: var(--accent); box-shadow: 0 6px 18px rgba(232,132,154,.28); }
+    .btn-fill:hover  { background: #d96e87; transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── SECTION SHELL ────────────────────────── */
+    .sec { padding: 6rem 3rem; }
+    .sec-alt { background: var(--surface); }
+    .wrap { max-width: 1200px; margin: 0 auto; }
+
+    .sec-label {
+      display: flex; align-items: center; gap: .6rem;
+      font-size: .7rem; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: .6rem;
+    }
+    .sec-label::before {
+      content: '✿'; display: block; font-size: .8rem;
+    }
+    .sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(1.9rem, 4.5vw, 3.1rem);
+      letter-spacing: -.01em; line-height: 1.15;
+      color: var(--text); margin-bottom: 3.25rem;
+    }
+
+    /* ── ABOUT ────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .avatar-box {
+      position: sticky; top: 5.5rem;
+    }
+    .avatar-mono {
+      width: 100%; aspect-ratio: 1; max-width: 260px;
+      background: linear-gradient(145deg, #FFE9E4, #F3E4F5);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      box-shadow: 0 18px 40px rgba(201,160,220,.22);
+    }
+    .avatar-initials {
+      font-family: 'Cormorant Garamond', serif; font-weight: 700;
+      font-size: 3.2rem; color: var(--accent);
+      letter-spacing: -.01em; position: relative; z-index: 1;
+    }
+    .about-stats {
+      display: flex; gap: 1.75rem; margin-top: 1.75rem; justify-content: center;
+    }
+    .s-val {
+      font-family: 'Cormorant Garamond', serif; font-weight: 700;
+      font-size: 2rem; color: var(--accent);
+      display: block; line-height: 1;
+    }
+    .s-lbl {
+      font-size: .68rem; text-transform: uppercase;
+      letter-spacing: .06em; color: var(--muted);
+    }
+    .about-text p {
+      color: var(--subtle); font-size: .96rem;
+      line-height: 1.9; margin-bottom: 1.1rem;
+    }
+
+    /* ── SKILLS ───────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+      gap: 1.25rem;
+    }
+    .sk-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.5rem;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .sk-card:hover { border-color: var(--accent2); transform: translateY(-3px); box-shadow: 0 14px 30px rgba(201,160,220,.18); }
+    .sk-name {
+      font-size: .68rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: .9rem;
+    }
+    .pills { display: flex; flex-wrap: wrap; gap: .38rem; }
+    .pill {
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--subtle); font-size: .76rem;
+      padding: .3rem .68rem; border-radius: 20px; transition: all .15s;
+    }
+    .pill:hover { border-color: var(--accent); color: var(--accent); background: var(--aglow); }
+
+    /* ── EXPERIENCE ───────────────────────────── */
+    .timeline { position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 10px; bottom: 0;
+      width: 1px; background: var(--border);
+    }
+    .exp-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 2.5rem;
+      padding-bottom: 3.25rem;
+    }
+    .exp-item:last-child { padding-bottom: 0; }
+    .exp-dot {
+      position: absolute; left: -4.5px; top: 9px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--bg);
+    }
+    .exp-meta { padding-left: 1.6rem; }
+    .exp-yr {
+      font-size: .7rem; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: .25rem;
+    }
+    .exp-kind { font-size: .76rem; color: var(--muted); }
+    .exp-co {
+      font-family: 'Cormorant Garamond', serif; font-weight: 700;
+      font-size: 1.35rem; color: var(--text); margin-bottom: .2rem;
+    }
+    .exp-role {
+      font-size: .85rem; color: var(--accent);
+      font-weight: 500; margin-bottom: .7rem;
+    }
+    .exp-desc {
+      font-size: .88rem; color: var(--subtle);
+      line-height: 1.8; margin-bottom: .9rem;
+    }
+
+    /* ── EDUCATION ────────────────────────────── */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+    .edu-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+      border-left: 3px solid var(--accent2);
+    }
+    .edu-yrs {
+      font-size: .7rem; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: .55rem;
+    }
+    .edu-degree {
+      font-family: 'Cormorant Garamond', serif; font-weight: 700;
+      font-size: 1.1rem; color: var(--text);
+      line-height: 1.4; margin-bottom: .4rem;
+    }
+    .edu-school { font-size: .8rem; color: var(--muted); }
+
+    /* ── CERTIFICATIONS ───────────────────────── */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.1rem;
+    }
+    .cert-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.5rem;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .cert-card:hover { border-color: var(--accent2); transform: translateY(-2px); box-shadow: 0 14px 30px rgba(201,160,220,.16); }
+    .cert-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; margin-bottom: .7rem;
+    }
+    .cert-badge {
+      font-size: .66rem; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--accent); background: var(--aglow);
+      padding: .24rem .6rem; border-radius: 20px;
+    }
+    .cert-dt { font-size: .68rem; color: var(--muted); }
+    .cert-title {
+      font-family: 'Cormorant Garamond', serif; font-weight: 600;
+      font-size: 1rem; color: var(--text);
+      line-height: 1.4; margin-bottom: .7rem;
+    }
+    .cert-tags { display: flex; flex-wrap: wrap; gap: .32rem; }
+    .ctag {
+      font-size: .66rem; color: var(--subtle);
+      background: var(--surface); padding: .22rem .52rem; border-radius: 14px;
+    }
+
+    /* ── CONTACT + LANGUAGES ──────────────────── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+    .lang-stack { display: flex; flex-direction: column; gap: 1.15rem; margin-bottom: 2.5rem; }
+    .lang-row {}
+    .lang-hdr {
+      display: flex; justify-content: space-between;
+      align-items: center; margin-bottom: .38rem;
+    }
+    .lang-nm { font-size: .875rem; font-weight: 500; color: var(--text); }
+    .lang-lv { font-size: .72rem; color: var(--muted); }
+    .lang-track {
+      height: 4px; background: var(--border);
+      border-radius: 4px; overflow: hidden;
+    }
+    .lang-fill {
+      height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent));
+      border-radius: 4px;
+      transition: width 1.4s cubic-bezier(.4,0,.2,1);
+      width: 0;
+    }
+    .clinks { display: flex; flex-direction: column; gap: .85rem; }
+    .clink {
+      display: flex; align-items: center; gap: .9rem;
+      padding: .9rem 1.15rem;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 14px; text-decoration: none;
+      color: var(--subtle); font-size: .85rem;
+      transition: border-color .2s, color .2s, transform .2s;
+    }
+    .clink:hover { border-color: var(--accent); color: var(--text); transform: translateX(3px); }
+    .clink-ico {
+      width: 34px; height: 34px; flex-shrink: 0;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 50%; display: flex;
+      align-items: center; justify-content: center;
+      font-size: .85rem; transition: border-color .2s, color .2s;
+    }
+    .clink:hover .clink-ico { border-color: var(--accent); color: var(--accent); }
+
+    /* FORM */
+    .form { display: flex; flex-direction: column; gap: .9rem; }
+    .form > p { font-size: .85rem; color: var(--muted); margin-bottom: .25rem; }
+    .f-row { display: flex; flex-direction: column; gap: .35rem; }
+    .f-lbl {
+      font-size: .68rem; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+    }
+    .f-inp, .f-area {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 12px; padding: .75rem 1rem;
+      color: var(--text); font-family: 'Poppins', sans-serif;
+      font-size: .875rem; outline: none; transition: border-color .2s;
+    }
+    .f-inp:focus, .f-area:focus { border-color: var(--accent); }
+    .f-area { resize: vertical; min-height: 110px; }
+
+    /* ── FOOTER ───────────────────────────────── */
+    footer {
+      padding: 1.75rem 3rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .foot-txt { font-size: .78rem; color: var(--muted); }
+    .foot-links { display: flex; gap: 1.5rem; }
+    .foot-a {
+      font-size: .78rem; color: var(--muted);
+      text-decoration: none; transition: color .2s;
+    }
+    .foot-a:hover { color: var(--accent); }
+
+    /* ── REVEAL ───────────────────────────────── */
+    .rv {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .rv.show { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ───────────────────────────── */
+    @media (max-width: 920px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: 58px; left: 0; right: 0;
+        background: var(--surface2); border-bottom: 1px solid var(--border);
+        padding: 1.5rem 2rem; gap: 1.35rem;
+      }
+      .nav-burger { display: flex; }
+      #hero { padding: 6rem 1.5rem 3rem; }
+      .hero-scroll { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .avatar-box { position: static; }
+      .exp-item { grid-template-columns: 1fr; gap: .4rem; }
+      .exp-meta { padding-left: 1.6rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .sec { padding: 4rem 1.5rem; }
+      footer { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="#hero">Ghofrane</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#experience">Expérience</a></li>
+    <li><a href="#certifications">Certifs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-eyebrow">Développeuse Web &amp; Mobile</div>
+  <h1 class="hero-name">
+    Ghofrane<br>
+    <span class="outline">Ben Moussa</span>
+  </h1>
+  <div class="hero-sub">
+    <span>Laravel</span><span class="sep">·</span>
+    <span>Flutter</span><span class="sep">·</span>
+    <span>WordPress</span><span class="sep">·</span>
+    <span>Djerba, Tunisie</span>
+  </div>
+  <div class="hero-actions">
+    <a href="#contact" class="btn btn-fill">Me contacter →</a>
+    <a href="https://github.com/GhBMpr" target="_blank" class="btn btn-ghost">GitHub</a>
+    <a href="https://linkedin.com/in/ghofrane-ben-moussa-1828b138a" target="_blank" class="btn btn-ghost">LinkedIn</a>
+  </div>
+  <div class="hero-scroll">Défiler</div>
+</div>
+
+<!-- ABOUT -->
+<section class="sec sec-alt" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="avatar-box">
+        <div class="avatar-mono">
+          <span class="avatar-initials">GBM</span>
+        </div>
+        <div class="about-stats">
+          <div><span class="s-val">4</span><span class="s-lbl">Stages</span></div>
+          <div><span class="s-val">6</span><span class="s-lbl">Certifs</span></div>
+          <div><span class="s-val">3</span><span class="s-lbl">Langues</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="sec-label">À propos</div>
+        <h2 class="sec-title">Passionnée par le code &amp; le design</h2>
+        <p class="rv">Étudiante en Licence en Technologie de l'Informatique Multimédia et Développement Web à l'ISET de Djerba, je conçois des applications web et mobiles modernes qui allient rigueur technique et sens du design.</p>
+        <p class="rv">Polyvalente et curieuse, je maîtrise le développement backend avec Laravel, le mobile avec Flutter et la création de sites WordPress professionnels. J'accorde une attention particulière à l'expérience utilisateur et à la qualité du code.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="sec" id="skills">
+  <div class="wrap">
+    <div class="sec-label">Compétences</div>
+    <h2 class="sec-title">Stack technique</h2>
+    <div class="skills-grid">
+      <div class="sk-card rv">
+        <div class="sk-name">Frontend &amp; Mobile</div>
+        <div class="pills">
+          <span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">Bootstrap</span>
+          <span class="pill">ReactJS</span><span class="pill">VueJS</span><span class="pill">Flutter</span><span class="pill">Dart</span>
+        </div>
+      </div>
+      <div class="sk-card rv">
+        <div class="sk-name">Backend &amp; Base de données</div>
+        <div class="pills">
+          <span class="pill">PHP</span><span class="pill">Laravel</span><span class="pill">SpringBoot</span>
+          <span class="pill">Firebase</span><span class="pill">MySQL</span><span class="pill">SQL</span>
+        </div>
+      </div>
+      <div class="sk-card rv">
+        <div class="sk-name">Langages de programmation</div>
+        <div class="pills">
+          <span class="pill">Python</span><span class="pill">Java</span><span class="pill">C</span>
+          <span class="pill">C#</span><span class="pill">Dart</span><span class="pill">JavaScript</span>
+        </div>
+      </div>
+      <div class="sk-card rv">
+        <div class="sk-name">Design &amp; Outils créatifs</div>
+        <div class="pills">
+          <span class="pill">Photoshop</span><span class="pill">Illustrator</span><span class="pill">Figma</span>
+          <span class="pill">Canva</span><span class="pill">Blender</span><span class="pill">Unity</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="sec sec-alt" id="experience">
+  <div class="wrap">
+    <div class="sec-label">Parcours</div>
+    <h2 class="sec-title">Expériences professionnelles</h2>
+    <div class="timeline">
+
+      <div class="exp-item rv">
+        <div class="exp-dot"></div>
+        <div class="exp-meta">
+          <div class="exp-yr">2026</div>
+          <div class="exp-kind">Stage PFE</div>
+        </div>
+        <div>
+          <div class="exp-co">Technet Média</div>
+          <div class="exp-role">Développeuse Full-Stack &amp; Mobile</div>
+          <p class="exp-desc">Développement d'une application mobile collaborative intégrant messagerie (Twilio), stockage décentralisé (StorJ), base de données temps réel et authentification sécurisée (Firebase), ainsi qu'un panneau administratif via Filament.</p>
+          <div class="pills">
+            <span class="pill">Flutter</span><span class="pill">Dart</span><span class="pill">Laravel</span>
+            <span class="pill">Filament</span><span class="pill">Firebase</span><span class="pill">Twilio</span><span class="pill">StorJ</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item rv">
+        <div class="exp-dot"></div>
+        <div class="exp-meta">
+          <div class="exp-yr">2025</div>
+          <div class="exp-kind">Stage d'été</div>
+        </div>
+        <div>
+          <div class="exp-co">AZDEV+</div>
+          <div class="exp-role">Développeuse WordPress</div>
+          <p class="exp-desc">Création d'un site web professionnel pour un centre de ventouse avec gestion des produits, vente en ligne et envoi d'emails automatisés.</p>
+          <div class="pills">
+            <span class="pill">WordPress</span><span class="pill">WooCommerce</span>
+            <span class="pill">Bold Builder</span><span class="pill">WP Mail SMTP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item rv">
+        <div class="exp-dot"></div>
+        <div class="exp-meta">
+          <div class="exp-yr">2025</div>
+          <div class="exp-kind">Stage de Perfectionnement</div>
+        </div>
+        <div>
+          <div class="exp-co">AZDEV+</div>
+          <div class="exp-role">Développeuse Web Laravel</div>
+          <p class="exp-desc">Développement d'un site web de gestion d'abonnements en ligne avec architecture MVC sous Laravel.</p>
+          <div class="pills">
+            <span class="pill">Laravel</span><span class="pill">PHP</span>
+            <span class="pill">MySQL</span><span class="pill">Bootstrap</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item rv">
+        <div class="exp-dot"></div>
+        <div class="exp-meta">
+          <div class="exp-yr">2024</div>
+          <div class="exp-kind">Stage d'Initiation</div>
+        </div>
+        <div>
+          <div class="exp-co">Ben Younes Web</div>
+          <div class="exp-role">Développeuse Front-End</div>
+          <p class="exp-desc">Réalisation d'un site e-commerce de vêtements responsive avec ReactJS pour une expérience utilisateur moderne.</p>
+          <div class="pills">
+            <span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">JavaScript</span>
+            <span class="pill">ReactJS</span><span class="pill">Bootstrap</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="sec" id="education">
+  <div class="wrap">
+    <div class="sec-label">Formation</div>
+    <h2 class="sec-title">Parcours académique</h2>
+    <div class="edu-grid">
+      <div class="edu-card rv">
+        <div class="edu-yrs">2023 – 2026</div>
+        <div class="edu-degree">Licence en Technologie de l'Informatique Multimédia et Développement Web</div>
+        <div class="edu-school">Institut Supérieur des Études Technologiques de Djerba</div>
+      </div>
+      <div class="edu-card rv">
+        <div class="edu-yrs">2022 – 2023</div>
+        <div class="edu-degree">Baccalauréat Informatique</div>
+        <div class="edu-school">Lycée Erriadh, Djerba · Mention : Assez bien</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="sec sec-alt" id="certifications">
+  <div class="wrap">
+    <div class="sec-label">Certifications</div>
+    <h2 class="sec-title">Formations certifiantes</h2>
+    <div class="certs-grid">
+      <div class="cert-card rv">
+        <div class="cert-top">
+          <span class="cert-badge">HP Life</span>
+          <span class="cert-dt">Jan. 2026</span>
+        </div>
+        <div class="cert-title">La pensée critique à l'ère de l'IA</div>
+        <div class="cert-tags">
+          <span class="ctag">IA</span><span class="ctag">Pensée critique</span><span class="ctag">Analyse</span>
+        </div>
+      </div>
+      <div class="cert-card rv">
+        <div class="cert-top">
+          <span class="cert-badge">Udemy</span>
+          <span class="cert-dt">Jan. 2026</span>
+        </div>
+        <div class="cert-title">Jira Fundamentals: Effective Scrum Project Management</div>
+        <div class="cert-tags">
+          <span class="ctag">Jira</span><span class="ctag">Scrum</span><span class="ctag">Agile</span>
+        </div>
+      </div>
+      <div class="cert-card rv">
+        <div class="cert-top">
+          <span class="cert-badge">Udemy</span>
+          <span class="cert-dt">Jan. 2026</span>
+        </div>
+        <div class="cert-title">The Complete Flutter Development Bootcamp with Dart</div>
+        <div class="cert-tags">
+          <span class="ctag">Flutter</span><span class="ctag">Dart</span><span class="ctag">Firebase</span>
+        </div>
+      </div>
+      <div class="cert-card rv">
+        <div class="cert-top">
+          <span class="cert-badge">HP Life</span>
+          <span class="cert-dt">Déc. 2025</span>
+        </div>
+        <div class="cert-title">Réseautage professionnel pour l'évolution de carrière</div>
+        <div class="cert-tags">
+          <span class="ctag">LinkedIn</span><span class="ctag">Personal Branding</span><span class="ctag">Networking</span>
+        </div>
+      </div>
+      <div class="cert-card rv">
+        <div class="cert-top">
+          <span class="cert-badge">Secourisme</span>
+          <span class="cert-dt">Nov. 2025</span>
+        </div>
+        <div class="cert-title">Secourisme Niveau 1</div>
+        <div class="cert-tags">
+          <span class="ctag">RCP</span><span class="ctag">Premiers secours</span><span class="ctag">Urgences</span>
+        </div>
+      </div>
+      <div class="cert-card rv">
+        <div class="cert-top">
+          <span class="cert-badge">NVIDIA</span>
+          <span class="cert-dt">Oct. 2025</span>
+        </div>
+        <div class="cert-title">Fundamentals of Deep Learning</div>
+        <div class="cert-tags">
+          <span class="ctag">CNN</span><span class="ctag">PyTorch</span><span class="ctag">CUDA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT + LANGUAGES -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+
+      <div>
+        <div class="sec-label">Contact</div>
+        <h2 class="sec-title">Travaillons ensemble</h2>
+
+        <div class="lang-stack">
+          <div class="lang-row">
+            <div class="lang-hdr"><span class="lang-nm">Arabe</span><span class="lang-lv">Maternelle</span></div>
+            <div class="lang-track"><div class="lang-fill" data-w="100%"></div></div>
+          </div>
+          <div class="lang-row">
+            <div class="lang-hdr"><span class="lang-nm">Français</span><span class="lang-lv">Professionnel</span></div>
+            <div class="lang-track"><div class="lang-fill" data-w="86%"></div></div>
+          </div>
+          <div class="lang-row">
+            <div class="lang-hdr"><span class="lang-nm">Anglais</span><span class="lang-lv">Professionnel</span></div>
+            <div class="lang-track"><div class="lang-fill" data-w="80%"></div></div>
+          </div>
+        </div>
+
+        <div class="clinks">
+          <a href="mailto:ghofranebenmoussa6@gmail.com" class="clink">
+            <div class="clink-ico">✉</div>
+            ghofranebenmoussa6@gmail.com
+          </a>
+          <a href="tel:+21653006574" class="clink">
+            <div class="clink-ico">☎</div>
+            +216 53 006 574
+          </a>
+          <a href="https://linkedin.com/in/ghofrane-ben-moussa-1828b138a" target="_blank" class="clink">
+            <div class="clink-ico">in</div>
+            linkedin.com/in/ghofrane-ben-moussa
+          </a>
+          <a href="https://github.com/GhBMpr" target="_blank" class="clink">
+            <div class="clink-ico">⌥</div>
+            github.com/GhBMpr
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="form">
+          <p>Disponible pour des missions freelance, des opportunités professionnelles ou des collaborations.</p>
+          <div class="f-row">
+            <label class="f-lbl">Nom</label>
+            <input class="f-inp" id="fn" type="text" placeholder="Votre nom">
+          </div>
+          <div class="f-row">
+            <label class="f-lbl">Email</label>
+            <input class="f-inp" id="fe" type="email" placeholder="votre@email.com">
+          </div>
+          <div class="f-row">
+            <label class="f-lbl">Message</label>
+            <textarea class="f-area" id="fm" placeholder="Votre message..."></textarea>
+          </div>
+          <button onclick="sendMsg()" class="btn btn-fill" style="align-self:flex-start">Envoyer →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="foot-txt">© 2026 Ghofrane Ben Moussa — Djerba, Tunisie</span>
+  <div class="foot-links">
+    <a class="foot-a" href="https://github.com/GhBMpr" target="_blank">GitHub</a>
+    <a class="foot-a" href="https://linkedin.com/in/ghofrane-ben-moussa-1828b138a" target="_blank">LinkedIn</a>
+    <a class="foot-a" href="mailto:ghofranebenmoussa6@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+  /* Nav scroll + active */
+  const nav = document.getElementById('nav');
+  const sections = document.querySelectorAll('section[id]');
+  const links    = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+  });
+
+  /* Burger */
+  document.getElementById('burger').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+
+  /* Scroll-reveal */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('show'), i * 75);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+  /* Language bars on contact section visible */
+  const contactSec = document.getElementById('contact');
+  const langObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      document.querySelectorAll('.lang-fill').forEach(b => {
+        b.style.width = b.dataset.w;
+      });
+      langObs.unobserve(contactSec);
+    }
+  }, { threshold: 0.25 });
+  langObs.observe(contactSec);
+
+  /* Contact form → mailto */
+  function sendMsg() {
+    const n = document.getElementById('fn').value.trim();
+    const e = document.getElementById('fe').value.trim();
+    const m = document.getElementById('fm').value.trim();
+    if (!n || !e || !m) { alert('Veuillez remplir tous les champs.'); return; }
+    window.location.href =
+      'mailto:ghofranebenmoussa6@gmail.com'
+      + '?subject=' + encodeURIComponent('Portfolio – Message de ' + n)
+      + '&body='    + encodeURIComponent(m + '\n\nEmail de contact : ' + e);
+  }
+</script>
+</body>
+</html>
