@@ -92,9 +92,7 @@
       letter-spacing: .14em; text-transform: uppercase;
       color: var(--accent); margin-bottom: 1.75rem;
     }
-    .hero-eyebrow::before {
-      content: '✿'; display: block; font-size: .85rem;
-    }
+    .hero-eyebrow::before { content: '✿'; display: block; font-size: .85rem; }
     .hero-name {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 700;
@@ -122,8 +120,7 @@
       color: var(--muted);
     }
     .hero-scroll::after {
-      content: ''; display: block;
-      width: 1px; height: 50px;
+      content: ''; display: block; width: 1px; height: 50px;
       background: linear-gradient(to bottom, var(--muted), transparent);
     }
 
@@ -153,9 +150,7 @@
       letter-spacing: .14em; text-transform: uppercase;
       color: var(--accent); margin-bottom: .6rem;
     }
-    .sec-label::before {
-      content: '✿'; display: block; font-size: .8rem;
-    }
+    .sec-label::before { content: '✿'; display: block; font-size: .8rem; }
     .sec-title {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 700;
@@ -170,14 +165,11 @@
       grid-template-columns: 260px 1fr;
       gap: 5rem; align-items: start;
     }
-    .avatar-box {
-      position: sticky; top: 5.5rem;
-    }
+    .avatar-box { position: sticky; top: 5.5rem; }
     .avatar-mono {
       width: 100%; aspect-ratio: 1; max-width: 260px;
       background: linear-gradient(145deg, #FFE9E4, #F3E4F5);
-      border: 1px solid var(--border);
-      border-radius: 50%;
+      border: 1px solid var(--border); border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
       box-shadow: 0 18px 40px rgba(201,160,220,.22);
@@ -188,17 +180,40 @@
       letter-spacing: -.01em; position: relative; z-index: 1;
     }
     .about-stats {
-      display: flex; gap: 1.75rem; margin-top: 1.75rem; justify-content: center;
+      display: flex; gap: 1rem; margin-top: 1.75rem;
+      justify-content: center; flex-wrap: wrap;
     }
+    .about-stats > div { text-align: center; }
     .s-val {
       font-family: 'Cormorant Garamond', serif; font-weight: 700;
       font-size: 2rem; color: var(--accent);
       display: block; line-height: 1;
     }
     .s-lbl {
-      font-size: .68rem; text-transform: uppercase;
+      font-size: .65rem; text-transform: uppercase;
       letter-spacing: .06em; color: var(--muted);
     }
+
+    /* ── VISIT BADGE ──────────────────────────── */
+    .visit-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: .32rem .85rem;
+      font-size: .7rem; color: var(--muted);
+      margin-top: .9rem;
+    }
+    .vb-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+      animation: vb-pulse 2s ease-in-out infinite;
+    }
+    @keyframes vb-pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:.45; transform:scale(.8); }
+    }
+    .vb-num { font-weight: 600; color: var(--accent); }
+
+    /* ── ABOUT TEXT ───────────────────────────── */
     .about-text p {
       color: var(--subtle); font-size: .96rem;
       line-height: 1.9; margin-bottom: 1.1rem;
@@ -238,17 +253,14 @@
     }
     .exp-item {
       position: relative;
-      display: grid;
-      grid-template-columns: 190px 1fr;
-      gap: 2.5rem;
-      padding-bottom: 3.25rem;
+      display: grid; grid-template-columns: 190px 1fr;
+      gap: 2.5rem; padding-bottom: 3.25rem;
     }
     .exp-item:last-child { padding-bottom: 0; }
     .exp-dot {
       position: absolute; left: -4.5px; top: 9px;
       width: 10px; height: 10px; border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px var(--bg);
+      background: var(--accent); box-shadow: 0 0 0 4px var(--bg);
     }
     .exp-meta { padding-left: 1.6rem; }
     .exp-yr {
@@ -329,11 +341,9 @@
 
     /* ── CONTACT + LANGUAGES ──────────────────── */
     .contact-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
     }
     .lang-stack { display: flex; flex-direction: column; gap: 1.15rem; margin-bottom: 2.5rem; }
-    .lang-row {}
     .lang-hdr {
       display: flex; justify-content: space-between;
       align-items: center; margin-bottom: .38rem;
@@ -394,12 +404,20 @@
       align-items: center; flex-wrap: wrap; gap: 1rem;
     }
     .foot-txt { font-size: .78rem; color: var(--muted); }
-    .foot-links { display: flex; gap: 1.5rem; }
+    .foot-links { display: flex; gap: 1.5rem; align-items: center; }
     .foot-a {
       font-size: .78rem; color: var(--muted);
       text-decoration: none; transition: color .2s;
     }
     .foot-a:hover { color: var(--accent); }
+
+    /* Admin trigger in footer */
+    .foot-admin-trigger {
+      font-size: .66rem; color: transparent; user-select: none;
+      cursor: default; letter-spacing: .06em;
+      transition: color .3s;
+    }
+    .foot-admin-trigger:hover { color: var(--muted); }
 
     /* ── REVEAL ───────────────────────────────── */
     .rv {
@@ -428,6 +446,134 @@
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
       .sec { padding: 4rem 1.5rem; }
       footer { padding: 1.5rem; }
+    }
+
+    /* ══════════════════════════════════════════
+       ADMIN PANEL
+    ══════════════════════════════════════════ */
+    .admin-overlay {
+      position: fixed; inset: 0;
+      background: rgba(58,46,51,.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s;
+    }
+    .admin-overlay.open { opacity: 1; pointer-events: all; }
+
+    .admin-panel {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 24px; padding: 2.25rem;
+      max-width: 700px; width: 93%;
+      max-height: 85vh; overflow-y: auto;
+      position: relative;
+      box-shadow: 0 32px 80px rgba(58,46,51,.22);
+      animation: adminIn .3s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes adminIn {
+      from { transform: translateY(18px) scale(.97); }
+      to   { transform: translateY(0) scale(1); }
+    }
+    .admin-panel::-webkit-scrollbar { width: 4px; }
+    .admin-panel::-webkit-scrollbar-track { background: transparent; }
+    .admin-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    .admin-hd {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; margin-bottom: 1.75rem;
+    }
+    .admin-hdtitle {
+      font-family: 'Cormorant Garamond', serif; font-weight: 700;
+      font-size: 1.85rem; color: var(--text); line-height: 1.15;
+    }
+    .admin-hdtitle span { color: var(--accent); }
+    .admin-hdsub {
+      font-size: .72rem; color: var(--muted); margin-top: .25rem;
+    }
+    .admin-close {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 50%; width: 38px; height: 38px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1.1rem; color: var(--muted);
+      transition: all .2s; margin-left: 1rem;
+    }
+    .admin-close:hover { border-color: var(--accent); color: var(--accent); }
+
+    .admin-kpi-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: .875rem; margin-bottom: 2rem;
+    }
+    .admin-kpi {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.35rem 1.4rem;
+    }
+    .admin-kpi-val {
+      font-family: 'Cormorant Garamond', serif; font-weight: 700;
+      font-size: 3rem; color: var(--accent); line-height: 1; display: block;
+    }
+    .admin-kpi-lbl {
+      font-size: .68rem; text-transform: uppercase;
+      letter-spacing: .09em; color: var(--muted); margin-top: .4rem;
+    }
+
+    .admin-section-hd {
+      font-size: .68rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .12em;
+      color: var(--accent); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .admin-section-hd::before { content: '✿'; font-size: .75rem; }
+
+    .contact-log { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1.75rem; }
+    .ce {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.1rem 1.2rem;
+      transition: border-color .2s;
+    }
+    .ce:hover { border-color: var(--accent2); }
+    .ce-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; gap: .5rem;
+    }
+    .ce-name  { font-weight: 600; font-size: .875rem; color: var(--text); }
+    .ce-date  { font-size: .65rem; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+    .ce-email {
+      font-size: .78rem; color: var(--accent); margin: .35rem 0 .5rem;
+      font-weight: 500;
+    }
+    .ce-msg   { font-size: .8rem; color: var(--subtle); line-height: 1.65; }
+
+    .admin-empty {
+      text-align: center; padding: 2.5rem 1rem;
+      font-size: .85rem; color: var(--muted);
+    }
+    .admin-empty .empty-icon { font-size: 2rem; display: block; margin-bottom: .75rem; }
+
+    .admin-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .abtn {
+      padding: .55rem 1.25rem; border-radius: 20px;
+      font-family: 'Poppins', sans-serif; font-size: .78rem; font-weight: 500;
+      cursor: pointer; border: 1px solid var(--border);
+      transition: all .2s;
+    }
+    .abtn-export { background: var(--accent); color: #FFFBF8; border-color: var(--accent); }
+    .abtn-export:hover { background: #d96e87; }
+    .abtn-clear  { background: transparent; color: var(--muted); }
+    .abtn-clear:hover  { border-color: #e07080; color: #e07080; }
+
+    .admin-hint {
+      margin-top: 1.25rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: .75rem 1rem;
+      font-size: .71rem; color: var(--muted); line-height: 1.6;
+    }
+    .admin-hint kbd {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 5px; padding: .1rem .38rem;
+      font-family: monospace; font-size: .75rem; color: var(--text);
     }
   </style>
 </head>
@@ -477,13 +623,26 @@
         <div class="avatar-mono">
           <span class="avatar-initials">GBM</span>
         </div>
+        <!-- Stats: 4 fixed + 1 live visitor count -->
         <div class="about-stats">
           <div><span class="s-val">4</span><span class="s-lbl">Stages</span></div>
           <div><span class="s-val">6</span><span class="s-lbl">Certifs</span></div>
           <div><span class="s-val">3</span><span class="s-lbl">Langues</span></div>
+          <div>
+            <span class="s-val" id="stat-visits">—</span>
+            <span class="s-lbl">Visites</span>
+          </div>
+        </div>
+        <!-- Live visitor badge -->
+        <div style="display:flex;justify-content:center;">
+          <div class="visit-badge">
+            <div class="vb-dot"></div>
+            <span>Portfolio · <span class="vb-num" id="badge-visits">—</span> visites</span>
+          </div>
         </div>
       </div>
-      <div>
+
+      <div class="about-text">
         <div class="sec-label">À propos</div>
         <h2 class="sec-title">Passionnée par le code &amp; le design</h2>
         <p class="rv">Étudiante en Licence en Technologie de l'Informatique Multimédia et Développement Web à l'ISET de Djerba, je conçois des applications web et mobiles modernes qui allient rigueur technique et sens du design.</p>
@@ -767,18 +926,65 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <span class="foot-txt">© 2026 Ghofrane Ben Moussa — Djerba, Tunisie</span>
   <div class="foot-links">
     <a class="foot-a" href="https://github.com/GhBMpr" target="_blank">GitHub</a>
     <a class="foot-a" href="https://linkedin.com/in/ghofrane-ben-moussa-1828b138a" target="_blank">LinkedIn</a>
     <a class="foot-a" href="mailto:ghofranebenmoussa6@gmail.com">Email</a>
+    <!-- Secret admin trigger: hover to reveal, click to open -->
+    <span class="foot-admin-trigger" id="admin-trigger" title="Tableau de bord">⬡</span>
   </div>
 </footer>
 
+<!-- ══════════════════════════════════════════════
+     ADMIN PANEL MODAL
+══════════════════════════════════════════════ -->
+<div class="admin-overlay" id="admin-overlay">
+  <div class="admin-panel" id="admin-panel">
+
+    <div class="admin-hd">
+      <div>
+        <div class="admin-hdtitle">Tableau de <span>Bord</span></div>
+        <div class="admin-hdsub">Statistiques de votre portfolio · données locales</div>
+      </div>
+      <button class="admin-close" onclick="closeAdmin()">✕</button>
+    </div>
+
+    <!-- KPIs -->
+    <div class="admin-kpi-row">
+      <div class="admin-kpi">
+        <span class="admin-kpi-val" id="ap-visits">—</span>
+        <div class="admin-kpi-lbl">Visites totales</div>
+      </div>
+      <div class="admin-kpi">
+        <span class="admin-kpi-val" id="ap-contacts">0</span>
+        <div class="admin-kpi-lbl">Contacts reçus</div>
+      </div>
+    </div>
+
+    <!-- Contact list -->
+    <div class="admin-section-hd">Messages &amp; Emails reçus</div>
+    <div class="contact-log" id="contact-log"></div>
+
+    <!-- Actions -->
+    <div class="admin-actions">
+      <button class="abtn abtn-export" onclick="exportCSV()">⬇ Exporter CSV</button>
+      <button class="abtn abtn-clear"  onclick="clearContacts()">✕ Vider les contacts</button>
+    </div>
+
+    <div class="admin-hint">
+      <strong>Accès :</strong> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> ou cliquer sur le symbole ⬡ en bas de page ·
+      Les contacts sont stockés dans votre navigateur (<code>localStorage</code>) sur cet appareil uniquement.
+    </div>
+
+  </div>
+</div>
+
 <script>
-  /* Nav scroll + active */
-  const nav = document.getElementById('nav');
+  /* ── NAV scroll + active ─────────────────────── */
+  const nav      = document.getElementById('nav');
   const sections = document.querySelectorAll('section[id]');
   const links    = document.querySelectorAll('.nav-links a');
 
@@ -789,12 +995,12 @@
     links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
   });
 
-  /* Burger */
+  /* ── Burger ──────────────────────────────────── */
   document.getElementById('burger').addEventListener('click', () => {
     document.getElementById('nav-links').classList.toggle('open');
   });
 
-  /* Scroll-reveal */
+  /* ── Scroll-reveal ───────────────────────────── */
   const obs = new IntersectionObserver(entries => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
@@ -805,7 +1011,7 @@
   }, { threshold: 0.07 });
   document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 
-  /* Language bars on contact section visible */
+  /* ── Language bars ───────────────────────────── */
   const contactSec = document.getElementById('contact');
   const langObs = new IntersectionObserver(entries => {
     if (entries[0].isIntersecting) {
@@ -817,16 +1023,174 @@
   }, { threshold: 0.25 });
   langObs.observe(contactSec);
 
-  /* Contact form → mailto */
+
+  /* ════════════════════════════════════════════════
+     VISITOR COUNTER — countapi.xyz
+     One increment per browser session; just reads
+     on repeat visits in the same tab session.
+  ════════════════════════════════════════════════ */
+  const COUNTER_NS  = 'ghofrane-benmoussa-portfolio';
+  const COUNTER_KEY = 'visits';
+
+  function setVisitUI(n) {
+    const display = n != null ? n.toLocaleString('fr-FR') : '—';
+    const el1 = document.getElementById('stat-visits');
+    const el2 = document.getElementById('badge-visits');
+    const el3 = document.getElementById('ap-visits');
+    if (el1) el1.textContent = display;
+    if (el2) el2.textContent = display;
+    if (el3) el3.textContent = display;
+  }
+
+  (async function trackVisit() {
+    const alreadyCounted = sessionStorage.getItem('gbm-counted');
+    const endpoint = alreadyCounted
+      ? `https://api.countapi.xyz/get/${COUNTER_NS}/${COUNTER_KEY}`
+      : `https://api.countapi.xyz/hit/${COUNTER_NS}/${COUNTER_KEY}`;
+    try {
+      const r = await fetch(endpoint);
+      if (!r.ok) throw new Error('API error');
+      const d = await r.json();
+      if (!alreadyCounted) sessionStorage.setItem('gbm-counted', '1');
+      setVisitUI(d.value);
+    } catch {
+      // API unavailable — show dashes; no crash
+      setVisitUI(null);
+    }
+  })();
+
+
+  /* ════════════════════════════════════════════════
+     CONTACT FORM — log submissions to localStorage
+  ════════════════════════════════════════════════ */
+  const STORAGE_KEY = 'gbm-portfolio-contacts';
+
+  function getContacts() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+    catch { return []; }
+  }
+  function saveContacts(arr) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+  }
+
   function sendMsg() {
     const n = document.getElementById('fn').value.trim();
     const e = document.getElementById('fe').value.trim();
     const m = document.getElementById('fm').value.trim();
     if (!n || !e || !m) { alert('Veuillez remplir tous les champs.'); return; }
+
+    /* Save to localStorage */
+    const contacts = getContacts();
+    contacts.unshift({
+      name: n, email: e, message: m,
+      date: new Date().toISOString()
+    });
+    saveContacts(contacts);
+
+    /* Open mail client */
     window.location.href =
       'mailto:ghofranebenmoussa6@gmail.com'
       + '?subject=' + encodeURIComponent('Portfolio – Message de ' + n)
       + '&body='    + encodeURIComponent(m + '\n\nEmail de contact : ' + e);
+  }
+
+
+  /* ════════════════════════════════════════════════
+     ADMIN PANEL
+  ════════════════════════════════════════════════ */
+  const overlay = document.getElementById('admin-overlay');
+
+  /* Open triggers */
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey && e.shiftKey && e.key === 'A') openAdmin();
+  });
+  document.getElementById('admin-trigger').addEventListener('click', openAdmin);
+
+  /* Close on backdrop click */
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeAdmin();
+  });
+
+  function openAdmin() {
+    renderAdminPanel();
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeAdmin() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function renderAdminPanel() {
+    const contacts = getContacts();
+
+    /* Update KPI counters */
+    document.getElementById('ap-contacts').textContent = contacts.length;
+
+    /* Rebuild contact log */
+    const log = document.getElementById('contact-log');
+    if (contacts.length === 0) {
+      log.innerHTML = `
+        <div class="admin-empty">
+          <span class="empty-icon">✉</span>
+          Aucun message reçu pour l'instant.<br>
+          Les contacts apparaissent ici dès qu'un visiteur envoie un message.
+        </div>`;
+      return;
+    }
+
+    log.innerHTML = contacts.map((c, i) => {
+      const d = new Date(c.date);
+      const dateStr = d.toLocaleDateString('fr-FR', {
+        day: 'numeric', month: 'short', year: 'numeric'
+      }) + ' · ' + d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+      return `
+        <div class="ce">
+          <div class="ce-top">
+            <span class="ce-name">${escHtml(c.name)}</span>
+            <span class="ce-date">${dateStr}</span>
+          </div>
+          <div class="ce-email">✉ ${escHtml(c.email)}</div>
+          <div class="ce-msg">${escHtml(c.message)}</div>
+        </div>`;
+    }).join('');
+  }
+
+  function escHtml(s) {
+    return String(s)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+
+  function exportCSV() {
+    const contacts = getContacts();
+    if (!contacts.length) { alert('Aucun contact à exporter.'); return; }
+
+    const header = ['Nom', 'Email', 'Message', 'Date'];
+    const rows = contacts.map(c => [
+      `"${c.name.replace(/"/g,'""')}"`,
+      `"${c.email.replace(/"/g,'""')}"`,
+      `"${c.message.replace(/"/g,'""')}"`,
+      `"${new Date(c.date).toLocaleString('fr-FR')}"`
+    ]);
+    const csv  = [header, ...rows].map(r => r.join(',')).join('\r\n');
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = 'contacts-portfolio-ghofrane.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function clearContacts() {
+    if (!confirm('Supprimer tous les contacts enregistrés ?\nCette action est irréversible.')) return;
+    saveContacts([]);
+    renderAdminPanel();
   }
 </script>
 </body>
