@@ -53,6 +53,7 @@
       color: var(--accent); text-decoration: none;
       letter-spacing: .01em;
     }
+    .nav-right { display: flex; align-items: center; gap: 1.75rem; }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       color: var(--subtle); text-decoration: none;
@@ -61,6 +62,18 @@
       transition: color .2s;
     }
     .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .lang-switch {
+      display: flex; align-items: center;
+      border: 1px solid var(--border); border-radius: 20px;
+      padding: .2rem; gap: .1rem; background: var(--surface2);
+    }
+    .lang-btn {
+      border: none; background: transparent; cursor: pointer;
+      font-family: 'Poppins', sans-serif; font-size: .68rem; font-weight: 600;
+      letter-spacing: .04em; color: var(--muted);
+      padding: .32rem .62rem; border-radius: 16px; transition: all .2s;
+    }
+    .lang-btn.active { background: var(--accent); color: #FFFBF8; }
     .nav-burger {
       display: none; flex-direction: column; gap: 5px;
       background: none; border: none; cursor: pointer; padding: 4px;
@@ -162,6 +175,11 @@
       font-size: clamp(1.9rem, 4.5vw, 3.1rem);
       letter-spacing: -.01em; line-height: 1.15;
       color: var(--text); margin-bottom: 3.25rem;
+    }
+    .sub-label {
+      font-size: .68rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent2); margin: 2.75rem 0 1.5rem;
     }
 
     /* ── ABOUT ────────────────────────────────── */
@@ -268,6 +286,35 @@
     .exp-desc {
       font-size: .88rem; color: var(--subtle);
       line-height: 1.8; margin-bottom: .9rem;
+    }
+
+    /* ── PROJECTS ─────────────────────────────── */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+    .proj-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.75rem;
+      border-left: 3px solid var(--accent);
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .proj-card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(232,132,154,.16); }
+    .proj-badge {
+      font-size: .66rem; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--accent); background: var(--aglow);
+      padding: .24rem .6rem; border-radius: 20px;
+      display: inline-block; margin-bottom: .9rem;
+    }
+    .proj-title {
+      font-family: 'Cormorant Garamond', serif; font-weight: 700;
+      font-size: 1.3rem; color: var(--text); margin-bottom: .6rem;
+    }
+    .proj-desc {
+      font-size: .88rem; color: var(--subtle);
+      line-height: 1.8; margin-bottom: 1rem;
     }
 
     /* ── EDUCATION ────────────────────────────── */
@@ -436,21 +483,27 @@
 <!-- NAV -->
 <nav id="nav">
   <a class="nav-logo" href="#hero">Ghofrane</a>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="#about">À propos</a></li>
-    <li><a href="#skills">Compétences</a></li>
-    <li><a href="#experience">Expérience</a></li>
-    <li><a href="#certifications">Certifs</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button class="nav-burger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-right">
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about" data-i18n="nav.about">À propos</a></li>
+      <li><a href="#skills" data-i18n="nav.skills">Compétences</a></li>
+      <li><a href="#experience" data-i18n="nav.experience">Expérience</a></li>
+      <li><a href="#certifications" data-i18n="nav.certifications">Certifs</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
 <div id="hero">
-  <div class="hero-eyebrow">Développeuse Web &amp; Mobile</div>
+  <div class="hero-eyebrow" data-i18n="hero.eyebrow">Développeuse Web &amp; Mobile</div>
   <h1 class="hero-name">
     Ghofrane<br>
     <span class="outline">Ben Moussa</span>
@@ -459,14 +512,14 @@
     <span>Laravel</span><span class="sep">·</span>
     <span>Flutter</span><span class="sep">·</span>
     <span>WordPress</span><span class="sep">·</span>
-    <span>Djerba, Tunisie</span>
+    <span data-i18n="hero.location">Djerba, Tunisie</span>
   </div>
   <div class="hero-actions">
-    <a href="#contact" class="btn btn-fill">Me contacter →</a>
+    <a href="#contact" class="btn btn-fill" data-i18n="hero.contactBtn">Me contacter →</a>
     <a href="https://github.com/GhBMpr" target="_blank" class="btn btn-ghost">GitHub</a>
     <a href="https://linkedin.com/in/ghofrane-ben-moussa-1828b138a" target="_blank" class="btn btn-ghost">LinkedIn</a>
   </div>
-  <div class="hero-scroll">Défiler</div>
+  <div class="hero-scroll" data-i18n="hero.scroll">Défiler</div>
 </div>
 
 <!-- ABOUT -->
@@ -478,16 +531,18 @@
           <span class="avatar-initials">GBM</span>
         </div>
         <div class="about-stats">
-          <div><span class="s-val">4</span><span class="s-lbl">Stages</span></div>
-          <div><span class="s-val">6</span><span class="s-lbl">Certifs</span></div>
-          <div><span class="s-val">3</span><span class="s-lbl">Langues</span></div>
+          <div><span class="s-val">4</span><span class="s-lbl" data-i18n="about.stat.internships">Stages</span></div>
+          <div><span class="s-val">6</span><span class="s-lbl" data-i18n="about.stat.certs">Certifs</span></div>
+          <div><span class="s-val">3</span><span class="s-lbl" data-i18n="about.stat.langs">Langues</span></div>
         </div>
       </div>
       <div>
-        <div class="sec-label">À propos</div>
-        <h2 class="sec-title">Passionnée par le code &amp; le design</h2>
-        <p class="rv">Étudiante en Licence en Technologie de l'Informatique Multimédia et Développement Web à l'ISET de Djerba, je conçois des applications web et mobiles modernes qui allient rigueur technique et sens du design.</p>
-        <p class="rv">Polyvalente et curieuse, je maîtrise le développement backend avec Laravel, le mobile avec Flutter et la création de sites WordPress professionnels. J'accorde une attention particulière à l'expérience utilisateur et à la qualité du code.</p>
+        <div class="sec-label" data-i18n="about.label">À propos</div>
+        <h2 class="sec-title" data-i18n="about.title">Passionnée par le code &amp; le design</h2>
+        <div class="about-text">
+          <p class="rv" data-i18n="about.p1">Diplômée d'une Licence en Technologie de l'Informatique Multimédia et Développement Web (ISET Djerba), je conçois des applications web et mobiles modernes qui allient rigueur technique et sens du design.</p>
+          <p class="rv" data-i18n="about.p2">Polyvalente et curieuse, je maîtrise le développement backend avec Laravel, le mobile avec Flutter et la création de sites WordPress professionnels. J'accorde une attention particulière à l'expérience utilisateur et à la qualité du code.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -496,35 +551,41 @@
 <!-- SKILLS -->
 <section class="sec" id="skills">
   <div class="wrap">
-    <div class="sec-label">Compétences</div>
-    <h2 class="sec-title">Stack technique</h2>
+    <div class="sec-label" data-i18n="skills.label">Compétences</div>
+    <h2 class="sec-title" data-i18n="skills.title">Stack technique</h2>
     <div class="skills-grid">
       <div class="sk-card rv">
-        <div class="sk-name">Frontend &amp; Mobile</div>
+        <div class="sk-name" data-i18n="skills.frontend">Frontend &amp; Mobile</div>
         <div class="pills">
           <span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">Bootstrap</span>
           <span class="pill">ReactJS</span><span class="pill">VueJS</span><span class="pill">Flutter</span><span class="pill">Dart</span>
         </div>
       </div>
       <div class="sk-card rv">
-        <div class="sk-name">Backend &amp; Base de données</div>
+        <div class="sk-name" data-i18n="skills.backend">Backend &amp; Base de données</div>
         <div class="pills">
           <span class="pill">PHP</span><span class="pill">Laravel</span><span class="pill">SpringBoot</span>
           <span class="pill">Firebase</span><span class="pill">MySQL</span><span class="pill">SQL</span>
         </div>
       </div>
       <div class="sk-card rv">
-        <div class="sk-name">Langages de programmation</div>
+        <div class="sk-name" data-i18n="skills.langs">Langages de programmation</div>
         <div class="pills">
           <span class="pill">Python</span><span class="pill">Java</span><span class="pill">C</span>
           <span class="pill">C#</span><span class="pill">Dart</span><span class="pill">JavaScript</span>
         </div>
       </div>
       <div class="sk-card rv">
-        <div class="sk-name">Design &amp; Outils créatifs</div>
+        <div class="sk-name" data-i18n="skills.design">Design &amp; Outils créatifs</div>
         <div class="pills">
           <span class="pill">Photoshop</span><span class="pill">Illustrator</span><span class="pill">Figma</span>
           <span class="pill">Canva</span><span class="pill">Blender</span><span class="pill">Unity</span>
+        </div>
+      </div>
+      <div class="sk-card rv">
+        <div class="sk-name" data-i18n="skills.data">Formats de données</div>
+        <div class="pills">
+          <span class="pill">JSON</span><span class="pill">XML</span>
         </div>
       </div>
     </div>
@@ -534,20 +595,20 @@
 <!-- EXPERIENCE -->
 <section class="sec sec-alt" id="experience">
   <div class="wrap">
-    <div class="sec-label">Parcours</div>
-    <h2 class="sec-title">Expériences professionnelles</h2>
+    <div class="sec-label" data-i18n="experience.label">Parcours</div>
+    <h2 class="sec-title" data-i18n="experience.title">Expériences professionnelles</h2>
     <div class="timeline">
 
       <div class="exp-item rv">
         <div class="exp-dot"></div>
         <div class="exp-meta">
           <div class="exp-yr">2026</div>
-          <div class="exp-kind">Stage PFE</div>
+          <div class="exp-kind" data-i18n="exp1.kind">Stage PFE</div>
         </div>
         <div>
           <div class="exp-co">Technet Média</div>
-          <div class="exp-role">Développeuse Full-Stack &amp; Mobile</div>
-          <p class="exp-desc">Développement d'une application mobile collaborative intégrant messagerie (Twilio), stockage décentralisé (StorJ), base de données temps réel et authentification sécurisée (Firebase), ainsi qu'un panneau administratif via Filament.</p>
+          <div class="exp-role" data-i18n="exp1.role">Développeuse Full-Stack &amp; Mobile</div>
+          <p class="exp-desc" data-i18n="exp1.desc">Développement d'une application mobile collaborative intégrant messagerie (Twilio), stockage décentralisé (StorJ), base de données temps réel et authentification sécurisée (Firebase), ainsi qu'un panneau administratif via Filament.</p>
           <div class="pills">
             <span class="pill">Flutter</span><span class="pill">Dart</span><span class="pill">Laravel</span>
             <span class="pill">Filament</span><span class="pill">Firebase</span><span class="pill">Twilio</span><span class="pill">StorJ</span>
@@ -559,12 +620,12 @@
         <div class="exp-dot"></div>
         <div class="exp-meta">
           <div class="exp-yr">2025</div>
-          <div class="exp-kind">Stage d'été</div>
+          <div class="exp-kind" data-i18n="exp2.kind">Stage d'été</div>
         </div>
         <div>
-          <div class="exp-co">AZDEV+</div>
-          <div class="exp-role">Développeuse WordPress</div>
-          <p class="exp-desc">Création d'un site web professionnel pour un centre de ventouse avec gestion des produits, vente en ligne et envoi d'emails automatisés.</p>
+          <div class="exp-co">Growthway</div>
+          <div class="exp-role" data-i18n="exp2.role">Développeuse WordPress</div>
+          <p class="exp-desc" data-i18n="exp2.desc">Création d'un site web professionnel pour un centre de ventouse avec gestion des produits, vente en ligne et envoi d'emails automatisés.</p>
           <div class="pills">
             <span class="pill">WordPress</span><span class="pill">WooCommerce</span>
             <span class="pill">Bold Builder</span><span class="pill">WP Mail SMTP</span>
@@ -576,12 +637,12 @@
         <div class="exp-dot"></div>
         <div class="exp-meta">
           <div class="exp-yr">2025</div>
-          <div class="exp-kind">Stage de Perfectionnement</div>
+          <div class="exp-kind" data-i18n="exp3.kind">Stage de Perfectionnement</div>
         </div>
         <div>
           <div class="exp-co">AZDEV+</div>
-          <div class="exp-role">Développeuse Web Laravel</div>
-          <p class="exp-desc">Développement d'un site web de gestion d'abonnements en ligne avec architecture MVC sous Laravel.</p>
+          <div class="exp-role" data-i18n="exp3.role">Développeuse Web Laravel</div>
+          <p class="exp-desc" data-i18n="exp3.desc">Développement d'un site web de gestion d'abonnements en ligne avec architecture MVC sous Laravel.</p>
           <div class="pills">
             <span class="pill">Laravel</span><span class="pill">PHP</span>
             <span class="pill">MySQL</span><span class="pill">Bootstrap</span>
@@ -593,12 +654,12 @@
         <div class="exp-dot"></div>
         <div class="exp-meta">
           <div class="exp-yr">2024</div>
-          <div class="exp-kind">Stage d'Initiation</div>
+          <div class="exp-kind" data-i18n="exp4.kind">Stage d'Initiation</div>
         </div>
         <div>
           <div class="exp-co">Ben Younes Web</div>
-          <div class="exp-role">Développeuse Front-End</div>
-          <p class="exp-desc">Réalisation d'un site e-commerce de vêtements responsive avec ReactJS pour une expérience utilisateur moderne.</p>
+          <div class="exp-role" data-i18n="exp4.role">Développeuse Front-End</div>
+          <p class="exp-desc" data-i18n="exp4.desc">Réalisation d'un site e-commerce de vêtements responsive avec ReactJS pour une expérience utilisateur moderne.</p>
           <div class="pills">
             <span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">JavaScript</span>
             <span class="pill">ReactJS</span><span class="pill">Bootstrap</span>
@@ -607,43 +668,95 @@
       </div>
 
     </div>
+
+    <div class="sub-label" data-i18n="summer.label">Emplois d'été</div>
+    <div class="timeline">
+
+      <div class="exp-item rv">
+        <div class="exp-dot"></div>
+        <div class="exp-meta">
+          <div class="exp-yr">2026</div>
+          <div class="exp-kind" data-i18n="exp5.kind">Emploi d'été</div>
+        </div>
+        <div>
+          <div class="exp-co" data-i18n="exp5.co">Hôtel Djerba Beach, Djerba</div>
+          <div class="exp-role" data-i18n="exp5.role">Commis de Cuisine – Garde Manger</div>
+          <p class="exp-desc" data-i18n="exp5.desc">Préparation de plats froids, entrées et salades au poste de garde-manger d'une cuisine d'hôtel durant la haute saison touristique. Inspirée par cette expérience, j'ai développé en autonomie « AI Plating Assistant », une application mobile qui utilise l'IA pour suggérer des idées de dressage et de présentation des plats.</p>
+          <div class="pills">
+            <span class="pill">Flutter</span><span class="pill">Firebase</span><span class="pill">IA</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item rv">
+        <div class="exp-dot"></div>
+        <div class="exp-meta">
+          <div class="exp-yr">2021</div>
+          <div class="exp-kind" data-i18n="exp6.kind">Emploi d'été</div>
+        </div>
+        <div>
+          <div class="exp-co" data-i18n="exp6.co">Supermarché Arij, Djerba</div>
+          <div class="exp-role" data-i18n="exp6.role">Caissière</div>
+          <p class="exp-desc" data-i18n="exp6.desc">Gestion des transactions clients, de la caisse et des opérations d'encaissement dans un environnement de vente à rythme soutenu.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sec" id="projects">
+  <div class="wrap">
+    <div class="sec-label" data-i18n="projects.label">Projet</div>
+    <h2 class="sec-title" data-i18n="projects.title">Projet personnel</h2>
+    <div class="proj-grid">
+      <div class="proj-card rv">
+        <span class="proj-badge" data-i18n="proj1.badge">Idée née d'un job d'été</span>
+        <div class="proj-title">AI Plating Assistant</div>
+        <p class="proj-desc" data-i18n="proj1.desc">Inspirée par son emploi d'été au poste de garde-manger dans une cuisine d'hôtel, Ghofrane a conçu cette application mobile qui utilise l'IA pour suggérer des idées de dressage et de présentation des plats, à destination des cuisiniers amateurs comme professionnels.</p>
+        <div class="pills">
+          <span class="pill">Flutter</span><span class="pill">Firebase</span><span class="pill">IA</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- EDUCATION -->
-<section class="sec" id="education">
+<section class="sec sec-alt" id="education">
   <div class="wrap">
-    <div class="sec-label">Formation</div>
-    <h2 class="sec-title">Parcours académique</h2>
+    <div class="sec-label" data-i18n="education.label">Formation</div>
+    <h2 class="sec-title" data-i18n="education.title">Parcours académique</h2>
     <div class="edu-grid">
       <div class="edu-card rv">
         <div class="edu-yrs">2023 – 2026</div>
-        <div class="edu-degree">Licence en Technologie de l'Informatique Multimédia et Développement Web</div>
-        <div class="edu-school">Institut Supérieur des Études Technologiques de Djerba</div>
+        <div class="edu-degree" data-i18n="edu1.degree">Licence en Technologie de l'Informatique Multimédia et Développement Web</div>
+        <div class="edu-school" data-i18n="edu1.school">Institut Supérieur des Études Technologiques de Djerba</div>
       </div>
       <div class="edu-card rv">
         <div class="edu-yrs">2022 – 2023</div>
-        <div class="edu-degree">Baccalauréat Informatique</div>
-        <div class="edu-school">Lycée Erriadh, Djerba · Mention : Assez bien</div>
+        <div class="edu-degree" data-i18n="edu2.degree">Baccalauréat Informatique</div>
+        <div class="edu-school" data-i18n="edu2.school">Lycée Erriadh, Djerba · Mention : Assez bien</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CERTIFICATIONS -->
-<section class="sec sec-alt" id="certifications">
+<section class="sec" id="certifications">
   <div class="wrap">
-    <div class="sec-label">Certifications</div>
-    <h2 class="sec-title">Formations certifiantes</h2>
+    <div class="sec-label" data-i18n="certifications.label">Certifications</div>
+    <h2 class="sec-title" data-i18n="certifications.title">Formations certifiantes</h2>
     <div class="certs-grid">
       <div class="cert-card rv">
         <div class="cert-top">
           <span class="cert-badge">HP Life</span>
           <span class="cert-dt">Jan. 2026</span>
         </div>
-        <div class="cert-title">La pensée critique à l'ère de l'IA</div>
+        <div class="cert-title" data-i18n="cert1.title">La pensée critique à l'ère de l'IA</div>
         <div class="cert-tags">
-          <span class="ctag">IA</span><span class="ctag">Pensée critique</span><span class="ctag">Analyse</span>
+          <span class="ctag" data-i18n="cert1.tag1">IA</span><span class="ctag" data-i18n="cert1.tag2">Pensée critique</span><span class="ctag" data-i18n="cert1.tag3">Analyse</span>
         </div>
       </div>
       <div class="cert-card rv">
@@ -671,19 +784,19 @@
           <span class="cert-badge">HP Life</span>
           <span class="cert-dt">Déc. 2025</span>
         </div>
-        <div class="cert-title">Réseautage professionnel pour l'évolution de carrière</div>
+        <div class="cert-title" data-i18n="cert4.title">Réseautage professionnel pour l'évolution de carrière</div>
         <div class="cert-tags">
-          <span class="ctag">LinkedIn</span><span class="ctag">Personal Branding</span><span class="ctag">Networking</span>
+          <span class="ctag">LinkedIn</span><span class="ctag" data-i18n="cert4.tag2">Personal Branding</span><span class="ctag" data-i18n="cert4.tag3">Réseautage</span>
         </div>
       </div>
       <div class="cert-card rv">
         <div class="cert-top">
-          <span class="cert-badge">Secourisme</span>
-          <span class="cert-dt">Nov. 2025</span>
+          <span class="cert-badge" data-i18n="cert5.badge">Secourisme</span>
+          <span class="cert-dt" data-i18n="cert5.dt">Nov. 2025</span>
         </div>
-        <div class="cert-title">Secourisme Niveau 1</div>
+        <div class="cert-title" data-i18n="cert5.title">Secourisme Niveau 1</div>
         <div class="cert-tags">
-          <span class="ctag">RCP</span><span class="ctag">Premiers secours</span><span class="ctag">Urgences</span>
+          <span class="ctag" data-i18n="cert5.tag1">RCP</span><span class="ctag" data-i18n="cert5.tag2">Premiers secours</span><span class="ctag" data-i18n="cert5.tag3">Urgences</span>
         </div>
       </div>
       <div class="cert-card rv">
@@ -701,25 +814,25 @@
 </section>
 
 <!-- CONTACT + LANGUAGES -->
-<section class="sec" id="contact">
+<section class="sec sec-alt" id="contact">
   <div class="wrap">
     <div class="contact-grid">
 
       <div>
-        <div class="sec-label">Contact</div>
-        <h2 class="sec-title">Travaillons ensemble</h2>
+        <div class="sec-label" data-i18n="contact.label">Contact</div>
+        <h2 class="sec-title" data-i18n="contact.title">Travaillons ensemble</h2>
 
         <div class="lang-stack">
           <div class="lang-row">
-            <div class="lang-hdr"><span class="lang-nm">Arabe</span><span class="lang-lv">Maternelle</span></div>
+            <div class="lang-hdr"><span class="lang-nm" data-i18n="lang.arabic">Arabe</span><span class="lang-lv" data-i18n="lang.arabic.lv">Maternelle</span></div>
             <div class="lang-track"><div class="lang-fill" data-w="100%"></div></div>
           </div>
           <div class="lang-row">
-            <div class="lang-hdr"><span class="lang-nm">Français</span><span class="lang-lv">Professionnel</span></div>
+            <div class="lang-hdr"><span class="lang-nm" data-i18n="lang.french">Français</span><span class="lang-lv" data-i18n="lang.french.lv">Professionnel</span></div>
             <div class="lang-track"><div class="lang-fill" data-w="86%"></div></div>
           </div>
           <div class="lang-row">
-            <div class="lang-hdr"><span class="lang-nm">Anglais</span><span class="lang-lv">Professionnel</span></div>
+            <div class="lang-hdr"><span class="lang-nm" data-i18n="lang.english">Anglais</span><span class="lang-lv" data-i18n="lang.english.lv">Professionnel</span></div>
             <div class="lang-track"><div class="lang-fill" data-w="80%"></div></div>
           </div>
         </div>
@@ -728,10 +841,6 @@
           <a href="mailto:ghofranebenmoussa6@gmail.com" class="clink">
             <div class="clink-ico">✉</div>
             ghofranebenmoussa6@gmail.com
-          </a>
-          <a href="tel:+21653006574" class="clink">
-            <div class="clink-ico">☎</div>
-            +216 53 006 574
           </a>
           <a href="https://linkedin.com/in/ghofrane-ben-moussa-1828b138a" target="_blank" class="clink">
             <div class="clink-ico">in</div>
@@ -746,20 +855,20 @@
 
       <div>
         <div class="form">
-          <p>Disponible pour des missions freelance, des opportunités professionnelles ou des collaborations.</p>
+          <p data-i18n="contact.formNote">Disponible pour des missions freelance, des opportunités professionnelles ou des collaborations.</p>
           <div class="f-row">
-            <label class="f-lbl">Nom</label>
-            <input class="f-inp" id="fn" type="text" placeholder="Votre nom">
+            <label class="f-lbl" data-i18n="form.name">Nom</label>
+            <input class="f-inp" id="fn" type="text" data-i18n-ph="form.namePh" placeholder="Votre nom">
           </div>
           <div class="f-row">
-            <label class="f-lbl">Email</label>
+            <label class="f-lbl" data-i18n="form.email">Email</label>
             <input class="f-inp" id="fe" type="email" placeholder="votre@email.com">
           </div>
           <div class="f-row">
-            <label class="f-lbl">Message</label>
-            <textarea class="f-area" id="fm" placeholder="Votre message..."></textarea>
+            <label class="f-lbl" data-i18n="form.message">Message</label>
+            <textarea class="f-area" id="fm" data-i18n-ph="form.messagePh" placeholder="Votre message..."></textarea>
           </div>
-          <button onclick="sendMsg()" class="btn btn-fill" style="align-self:flex-start">Envoyer →</button>
+          <button onclick="sendMsg()" class="btn btn-fill" style="align-self:flex-start" data-i18n="form.send">Envoyer →</button>
         </div>
       </div>
 
@@ -768,7 +877,7 @@
 </section>
 
 <footer>
-  <span class="foot-txt">© 2026 Ghofrane Ben Moussa — Djerba, Tunisie</span>
+  <span class="foot-txt" data-i18n="footer.txt">© 2026 Ghofrane Ben Moussa — Djerba, Tunisie</span>
   <div class="foot-links">
     <a class="foot-a" href="https://github.com/GhBMpr" target="_blank">GitHub</a>
     <a class="foot-a" href="https://linkedin.com/in/ghofrane-ben-moussa-1828b138a" target="_blank">LinkedIn</a>
@@ -777,6 +886,153 @@
 </footer>
 
 <script>
+  /* ── i18n dictionary ─────────────────────────────────────────── */
+  const i18n = {
+    "nav.about":            { fr: "À propos",              en: "About" },
+    "nav.skills":           { fr: "Compétences",           en: "Skills" },
+    "nav.experience":       { fr: "Expérience",             en: "Experience" },
+    "nav.certifications":   { fr: "Certifs",                en: "Certificates" },
+    "nav.contact":          { fr: "Contact",                en: "Contact" },
+
+    "hero.eyebrow":         { fr: "Développeuse Web &amp; Mobile", en: "Web &amp; Mobile Developer" },
+    "hero.location":        { fr: "Djerba, Tunisie",        en: "Djerba, Tunisia" },
+    "hero.contactBtn":      { fr: "Me contacter →",         en: "Contact me →" },
+    "hero.scroll":          { fr: "Défiler",                en: "Scroll" },
+
+    "about.label":          { fr: "À propos",               en: "About" },
+    "about.title":          { fr: "Passionnée par le code &amp; le design", en: "Passionate about code &amp; design" },
+    "about.p1":              { fr: "Diplômée d'une Licence en Technologie de l'Informatique Multimédia et Développement Web (ISET Djerba), je conçois des applications web et mobiles modernes qui allient rigueur technique et sens du design.",
+                               en: "A graduate with a Bachelor's degree in Multimedia IT and Web Development Technology (ISET Djerba), I design modern web and mobile applications that combine technical rigor with an eye for design." },
+    "about.p2":              { fr: "Polyvalente et curieuse, je maîtrise le développement backend avec Laravel, le mobile avec Flutter et la création de sites WordPress professionnels. J'accorde une attention particulière à l'expérience utilisateur et à la qualité du code.",
+                               en: "Versatile and curious, I'm comfortable with backend development in Laravel, mobile development in Flutter, and building professional WordPress sites. I pay close attention to user experience and code quality." },
+    "about.stat.internships": { fr: "Stages", en: "Internships" },
+    "about.stat.certs":      { fr: "Certifs", en: "Certificates" },
+    "about.stat.langs":      { fr: "Langues", en: "Languages" },
+
+    "skills.label":          { fr: "Compétences",           en: "Skills" },
+    "skills.title":          { fr: "Stack technique",       en: "Technical Stack" },
+    "skills.frontend":       { fr: "Frontend &amp; Mobile", en: "Frontend &amp; Mobile" },
+    "skills.backend":        { fr: "Backend &amp; Base de données", en: "Backend &amp; Databases" },
+    "skills.langs":          { fr: "Langages de programmation", en: "Programming Languages" },
+    "skills.design":         { fr: "Design &amp; Outils créatifs", en: "Design &amp; Creative Tools" },
+    "skills.data":           { fr: "Formats de données",    en: "Data Formats" },
+
+    "experience.label":      { fr: "Parcours",              en: "Journey" },
+    "experience.title":      { fr: "Expériences professionnelles", en: "Professional Experience" },
+
+    "exp1.kind":  { fr: "Stage PFE", en: "Final-Year Internship (PFE)" },
+    "exp1.role":  { fr: "Développeuse Full-Stack &amp; Mobile", en: "Full-Stack &amp; Mobile Developer" },
+    "exp1.desc":  { fr: "Développement d'une application mobile collaborative intégrant messagerie (Twilio), stockage décentralisé (StorJ), base de données temps réel et authentification sécurisée (Firebase), ainsi qu'un panneau administratif via Filament.",
+                    en: "Built a collaborative mobile application integrating in-app messaging (Twilio), decentralized file storage (StorJ), a real-time database, secure authentication (Firebase), and an administrative back-office panel via Filament." },
+
+    "exp2.kind":  { fr: "Stage d'été", en: "Summer Internship" },
+    "exp2.role":  { fr: "Développeuse WordPress", en: "WordPress Developer" },
+    "exp2.desc":  { fr: "Création d'un site web professionnel pour un centre de ventouse avec gestion des produits, vente en ligne et envoi d'emails automatisés.",
+                    en: "Built a professional website for a cupping therapy center, including product management, online sales, and automated transactional emails." },
+
+    "exp3.kind":  { fr: "Stage de Perfectionnement", en: "Advanced Training Internship" },
+    "exp3.role":  { fr: "Développeuse Web Laravel", en: "Laravel Web Developer" },
+    "exp3.desc":  { fr: "Développement d'un site web de gestion d'abonnements en ligne avec architecture MVC sous Laravel.",
+                    en: "Built an online subscription management website with an MVC architecture in Laravel." },
+
+    "exp4.kind":  { fr: "Stage d'Initiation", en: "Introductory Internship" },
+    "exp4.role":  { fr: "Développeuse Front-End", en: "Front-End Developer" },
+    "exp4.desc":  { fr: "Réalisation d'un site e-commerce de vêtements responsive avec ReactJS pour une expérience utilisateur moderne.",
+                    en: "Built a responsive clothing e-commerce website with ReactJS for a modern user experience." },
+
+    "summer.label": { fr: "Emplois d'été", en: "Summer Jobs" },
+
+    "exp5.kind":  { fr: "Emploi d'été", en: "Summer Job" },
+    "exp5.co":    { fr: "Hôtel Djerba Beach, Djerba", en: "Djerba Beach Hotel, Djerba" },
+    "exp5.role":  { fr: "Commis de Cuisine – Garde Manger", en: "Kitchen Staff – Garde Manger" },
+    "exp5.desc":  { fr: "Préparation de plats froids, entrées et salades au poste de garde-manger d'une cuisine d'hôtel durant la haute saison touristique. Inspirée par cette expérience, j'ai développé en autonomie « AI Plating Assistant », une application mobile qui utilise l'IA pour suggérer des idées de dressage et de présentation des plats.",
+                    en: "Prepared cold dishes, appetizers, and salads in the garde manger section of a hotel kitchen during peak tourist season. Inspired by this experience, I independently built \"AI Plating Assistant,\" a mobile app that uses AI to suggest plating and food presentation ideas." },
+
+    "exp6.kind":  { fr: "Emploi d'été", en: "Summer Job" },
+    "exp6.co":    { fr: "Supermarché Arij, Djerba", en: "Arij Supermarket, Djerba" },
+    "exp6.role":  { fr: "Caissière", en: "Cashier" },
+    "exp6.desc":  { fr: "Gestion des transactions clients, de la caisse et des opérations d'encaissement dans un environnement de vente à rythme soutenu.",
+                    en: "Handled customer transactions, cash handling, and checkout operations in a fast-paced retail environment." },
+
+    "projects.label": { fr: "Projet", en: "Project" },
+    "projects.title": { fr: "Projet personnel", en: "Personal Project" },
+    "proj1.badge":    { fr: "Idée née d'un job d'été", en: "Idea born from a summer job" },
+    "proj1.desc":     { fr: "Inspirée par son emploi d'été au poste de garde-manger dans une cuisine d'hôtel, Ghofrane a conçu cette application mobile qui utilise l'IA pour suggérer des idées de dressage et de présentation des plats, à destination des cuisiniers amateurs comme professionnels.",
+                        en: "Inspired by her summer job in the garde manger section of a hotel kitchen, Ghofrane built this mobile app that uses AI to suggest plating and food presentation ideas for both home cooks and professionals." },
+
+    "education.label":  { fr: "Formation", en: "Education" },
+    "education.title":  { fr: "Parcours académique", en: "Academic Background" },
+    "edu1.degree":       { fr: "Licence en Technologie de l'Informatique Multimédia et Développement Web", en: "Bachelor's Degree in Multimedia IT and Web Development Technology" },
+    "edu1.school":       { fr: "Institut Supérieur des Études Technologiques de Djerba", en: "Higher Institute of Technological Studies of Djerba" },
+    "edu2.degree":       { fr: "Baccalauréat Informatique", en: "Computer Science Baccalaureate" },
+    "edu2.school":       { fr: "Lycée Erriadh, Djerba · Mention : Assez bien", en: "Lycée Erriadh, Djerba · Grade: Good" },
+
+    "certifications.label": { fr: "Certifications", en: "Certifications" },
+    "certifications.title": { fr: "Formations certifiantes", en: "Certified Courses" },
+    "cert1.title":  { fr: "La pensée critique à l'ère de l'IA", en: "Critical Thinking in the Age of AI" },
+    "cert1.tag1":   { fr: "IA", en: "AI" },
+    "cert1.tag2":   { fr: "Pensée critique", en: "Critical Thinking" },
+    "cert1.tag3":   { fr: "Analyse", en: "Analysis" },
+    "cert4.title":  { fr: "Réseautage professionnel pour l'évolution de carrière", en: "Professional Networking for Career Growth" },
+    "cert4.tag2":   { fr: "Personal Branding", en: "Personal Branding" },
+    "cert4.tag3":   { fr: "Réseautage", en: "Networking" },
+    "cert5.badge":  { fr: "Secourisme", en: "First Aid" },
+    "cert5.dt":     { fr: "Nov. 2025", en: "Nov. 2025" },
+    "cert5.title":  { fr: "Secourisme Niveau 1", en: "First Aid Level 1" },
+    "cert5.tag1":   { fr: "RCP", en: "CPR" },
+    "cert5.tag2":   { fr: "Premiers secours", en: "First Aid" },
+    "cert5.tag3":   { fr: "Urgences", en: "Emergencies" },
+
+    "contact.label":     { fr: "Contact", en: "Contact" },
+    "contact.title":     { fr: "Travaillons ensemble", en: "Let's work together" },
+    "contact.formNote":  { fr: "Disponible pour des missions freelance, des opportunités professionnelles ou des collaborations.",
+                           en: "Available for freelance work, professional opportunities, or collaborations." },
+
+    "lang.arabic":       { fr: "Arabe", en: "Arabic" },
+    "lang.arabic.lv":    { fr: "Maternelle", en: "Native" },
+    "lang.french":       { fr: "Français", en: "French" },
+    "lang.french.lv":    { fr: "Professionnel", en: "Professional" },
+    "lang.english":      { fr: "Anglais", en: "English" },
+    "lang.english.lv":   { fr: "Professionnel", en: "Professional" },
+
+    "form.name":        { fr: "Nom", en: "Name" },
+    "form.namePh":      { fr: "Votre nom", en: "Your name" },
+    "form.email":       { fr: "Email", en: "Email" },
+    "form.message":     { fr: "Message", en: "Message" },
+    "form.messagePh":   { fr: "Votre message...", en: "Your message..." },
+    "form.send":        { fr: "Envoyer →", en: "Send →" },
+
+    "footer.txt":       { fr: "© 2026 Ghofrane Ben Moussa — Djerba, Tunisie", en: "© 2026 Ghofrane Ben Moussa — Djerba, Tunisia" },
+  };
+
+  let currentLang = 'fr';
+
+  function applyLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (i18n[key] && i18n[key][lang] !== undefined) {
+        el.innerHTML = i18n[key][lang];
+      }
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+      const key = el.getAttribute('data-i18n-ph');
+      if (i18n[key] && i18n[key][lang] !== undefined) {
+        el.setAttribute('placeholder', i18n[key][lang]);
+      }
+    });
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+    });
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+  });
+
+  applyLang('fr');
+
   /* Nav scroll + active */
   const nav = document.getElementById('nav');
   const sections = document.querySelectorAll('section[id]');
@@ -822,11 +1078,14 @@
     const n = document.getElementById('fn').value.trim();
     const e = document.getElementById('fe').value.trim();
     const m = document.getElementById('fm').value.trim();
-    if (!n || !e || !m) { alert('Veuillez remplir tous les champs.'); return; }
+    const missingMsg = currentLang === 'fr' ? 'Veuillez remplir tous les champs.' : 'Please fill in all fields.';
+    const subjectMsg = currentLang === 'fr' ? 'Portfolio – Message de ' : 'Portfolio – Message from ';
+    const emailLbl   = currentLang === 'fr' ? 'Email de contact : ' : 'Contact email: ';
+    if (!n || !e || !m) { alert(missingMsg); return; }
     window.location.href =
       'mailto:ghofranebenmoussa6@gmail.com'
-      + '?subject=' + encodeURIComponent('Portfolio – Message de ' + n)
-      + '&body='    + encodeURIComponent(m + '\n\nEmail de contact : ' + e);
+      + '?subject=' + encodeURIComponent(subjectMsg + n)
+      + '&body='    + encodeURIComponent(m + '\n\n' + emailLbl + e);
   }
 </script>
 </body>
