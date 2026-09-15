@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ghofrane Ben Moussa – Portfolio</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -515,7 +519,8 @@
     <span data-i18n="hero.location">Djerba, Tunisie</span>
   </div>
   <div class="hero-actions">
-    <a href="#contact" class="btn btn-fill" data-i18n="hero.contactBtn">Me contacter →</a>
+    <a id="cv-btn" href="cv/Ghofrane_Ben_Moussa_CV_FR.docx" download="Ghofrane_Ben_Moussa_CV_FR.docx" class="btn btn-fill" data-i18n="hero.downloadBtn">Télécharger mon CV ↓</a>
+    <a href="#contact" class="btn btn-ghost" data-i18n="hero.contactBtn">Me contacter →</a>
     <a href="https://github.com/GhBMpr" target="_blank" class="btn btn-ghost">GitHub</a>
     <a href="https://linkedin.com/in/ghofrane-ben-moussa-1828b138a" target="_blank" class="btn btn-ghost">LinkedIn</a>
   </div>
@@ -848,6 +853,10 @@
         </div>
 
         <div class="clinks">
+          <a id="cv-clink" href="cv/Ghofrane_Ben_Moussa_CV_FR.docx" download="Ghofrane_Ben_Moussa_CV_FR.docx" class="clink">
+            <div class="clink-ico">⇩</div>
+            <span data-i18n="contact.downloadCv">Télécharger mon CV (.docx)</span>
+          </a>
           <a href="mailto:ghofranebenmoussa6@gmail.com" class="clink">
             <div class="clink-ico">✉</div>
             ghofranebenmoussa6@gmail.com
@@ -906,6 +915,7 @@
 
     "hero.eyebrow":         { fr: "Développeuse Web &amp; Mobile", en: "Web &amp; Mobile Developer" },
     "hero.location":        { fr: "Djerba, Tunisie",        en: "Djerba, Tunisia" },
+    "hero.downloadBtn":     { fr: "Télécharger mon CV ↓",   en: "Download my CV ↓" },
     "hero.contactBtn":      { fr: "Me contacter →",         en: "Contact me →" },
     "hero.scroll":          { fr: "Défiler",                en: "Scroll" },
 
@@ -999,6 +1009,7 @@
 
     "contact.label":     { fr: "Contact", en: "Contact" },
     "contact.title":     { fr: "Travaillons ensemble", en: "Let's work together" },
+    "contact.downloadCv": { fr: "Télécharger mon CV (.docx)", en: "Download my CV (.docx)" },
     "contact.formNote":  { fr: "Disponible pour des missions freelance, des opportunités professionnelles ou des collaborations.",
                            en: "Available for freelance work, professional opportunities, or collaborations." },
 
@@ -1021,6 +1032,21 @@
 
   let currentLang = 'fr';
 
+  /* CV file paths per language — update these if you rename/move the files */
+  const cvFiles = {
+    fr: "cv/Ghofrane_Ben_Moussa_CV_FR.docx",
+    en: "cv/Ghofrane_Ben_Moussa_CV_EN.docx",
+  };
+
+  function updateCvLinks(lang) {
+    const file = cvFiles[lang] || cvFiles.fr;
+    const filename = file.split('/').pop();
+    document.querySelectorAll('#cv-btn, #cv-clink').forEach(el => {
+      el.setAttribute('href', file);
+      el.setAttribute('download', filename);
+    });
+  }
+
   function applyLang(lang) {
     currentLang = lang;
     document.documentElement.lang = lang;
@@ -1039,6 +1065,7 @@
     document.querySelectorAll('.lang-btn').forEach(b => {
       b.classList.toggle('active', b.getAttribute('data-lang') === lang);
     });
+    updateCvLinks(lang);
   }
 
   document.querySelectorAll('.lang-btn').forEach(btn => {
